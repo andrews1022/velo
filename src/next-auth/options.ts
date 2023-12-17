@@ -1,15 +1,29 @@
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import { PrismaClient } from "@prisma/client";
 
 import type { NextAuthOptions } from "next-auth";
 
+const prisma = new PrismaClient();
+
 const options: NextAuthOptions = {
+  adapter: PrismaAdapter(prisma),
   callbacks: {
-    async signIn({ account, credentials, email, profile, user }) {
-      console.log("account", account);
-      console.log("credentials", credentials);
-      console.log("email", email);
-      console.log("profile", profile);
-      console.log("user", user);
+    async signIn({ account, profile }) {
+      if (!profile?.email) {
+        throw new Error("No profile");
+      }
+
+      await prisma.user.upsert({
+        where: { email: profile.email },
+        create: {
+          email: profile.email,
+          name: profile.name
+        },
+        update: {
+          name: profile.name
+        }
+      });
 
       return true;
     }

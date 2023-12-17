@@ -15,7 +15,9 @@ const options: NextAuthOptions = {
       }
 
       await prisma.user.upsert({
-        where: { email: profile.email },
+        where: {
+          email: profile.email
+        },
         create: {
           email: profile.email,
           name: profile.name
@@ -27,6 +29,9 @@ const options: NextAuthOptions = {
 
       return true;
     }
+  },
+  pages: {
+    signIn: "/login"
   },
   providers: [
     GoogleProvider({

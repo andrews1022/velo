@@ -1,7 +1,7 @@
 import { Inter } from "next/font/google";
 
-import { Footer } from "@/components/global/Footer";
-import { Navbar } from "@/components/global/Navbar";
+import { Footer } from "@/components/global/footer";
+import { Navbar } from "@/components/global/navbar";
 
 import type { Metadata } from "next";
 import type { ReactNode } from "react";

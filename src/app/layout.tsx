@@ -11,8 +11,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  description: "Vélo is a cycling tracker.",
-  title: "Vélo"
+  description: "Velo is a cycling tracker.",
+  title: "Velo"
 };
 
 type RootLayoutProps = {

@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 
 import { options } from "@/next-auth/options";
 
-const DashboardPage = async () => {
+const AccountPage = async () => {
   const session = await getServerSession(options);
 
   if (!session) {
@@ -12,11 +12,11 @@ const DashboardPage = async () => {
 
   return (
     <div>
-      <h1>DashboardPage</h1>
+      <h1>AccountPage</h1>
 
       <pre>{JSON.stringify(session, null, 2)}</pre>
     </div>
   );
 };
 
-export default DashboardPage;
+export default AccountPage;

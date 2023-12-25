@@ -7,6 +7,16 @@ import type { NextAuthOptions } from "next-auth";
 const options: NextAuthOptions = {
   // @ts-ignore
   adapter: DrizzleAdapter(db),
+  callbacks: {
+    async session({ session, user }) {
+      return {
+        ...session,
+        user: {
+          ...user
+        }
+      };
+    }
+  },
   pages: {
     signIn: "/login"
   },

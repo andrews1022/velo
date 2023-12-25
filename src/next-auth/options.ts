@@ -1,34 +1,12 @@
 import GoogleProvider from "next-auth/providers/google";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
-// import { PrismaClient } from "@prisma/client";
-import prisma from "@/prisma/client";
+import { DrizzleAdapter } from "@auth/drizzle-adapter";
+import { db } from "@/drizzle/config";
 
 import type { NextAuthOptions } from "next-auth";
 
 const options: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
-  callbacks: {
-    async signIn({ account, profile }) {
-      if (!profile?.email) {
-        throw new Error("No profile");
-      }
-
-      await prisma.user.upsert({
-        where: {
-          email: profile.email
-        },
-        create: {
-          email: profile.email,
-          name: profile.name
-        },
-        update: {
-          name: profile.name
-        }
-      });
-
-      return true;
-    }
-  },
+  // @ts-ignore
+  adapter: DrizzleAdapter(db),
   pages: {
     signIn: "/login"
   },

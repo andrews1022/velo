@@ -1,0 +1,2 @@
+ALTER TABLE "account" ADD CONSTRAINT "custom_pk_name" PRIMARY KEY("provider","providerAccountId");--> statement-breakpoint
+ALTER TABLE "verificationToken" ADD CONSTRAINT "custom_vt_name" PRIMARY KEY("identifier","token");

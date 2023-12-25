@@ -26,8 +26,8 @@ export const accounts = pgTable(
     id_token: text("id_token"),
     session_state: text("session_state")
   },
-  (account) => ({
-    compoundKey: primaryKey(account.provider, account.providerAccountId)
+  (table) => ({
+    pk: primaryKey({ columns: [table.provider, table.providerAccountId] })
   })
 );
 
@@ -46,7 +46,7 @@ export const verificationTokens = pgTable(
     token: text("token").notNull(),
     expires: timestamp("expires", { mode: "date" }).notNull()
   },
-  (vt) => ({
-    compoundKey: primaryKey(vt.identifier, vt.token)
+  (table) => ({
+    pk: primaryKey({ columns: [table.identifier, table.token] })
   })
 );

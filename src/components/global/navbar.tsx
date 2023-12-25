@@ -1,4 +1,7 @@
 import Link from "next/link";
+import { Recursive } from "next/font/google";
+
+const recursive = Recursive({ subsets: ["latin"], weight: ["800"] });
 
 const links = [
   {
@@ -28,7 +31,7 @@ const Navbar = () => {
     <nav className="border-b-2 border-black py-2 px-4">
       <ul className="flex items-center gap-4">
         <li>
-          <Link href="/" className="text-2xl">
+          <Link href="/" className={`${recursive.className} text-4xl`}>
             Velo
           </Link>
         </li>

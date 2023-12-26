@@ -11,6 +11,13 @@ const config: Config = {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic": "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))"
+      },
+      colors: {
+        turquoise: "#4AB8C8",
+        porsche: "#E69555",
+        cadet: "#679DA6",
+        squirrel: "#917966",
+        shuttle: "#596466"
       }
     }
   },

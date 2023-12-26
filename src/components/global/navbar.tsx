@@ -1,51 +1,56 @@
 import Link from "next/link";
-import { Recursive } from "next/font/google";
 
-const recursive = Recursive({ subsets: ["latin"], weight: ["800"] });
+import VeloLogo from "@/components/global/velo-logo";
 
-const links = [
-  {
-    label: "Features",
-    url: "/features"
-  },
-  {
-    label: "Pricing",
-    url: "/pricing"
-  },
-  {
-    label: "Login",
-    url: "/login"
-  },
-  {
-    label: "Privacy Policy",
-    url: "/privacy-policy"
-  },
-  {
-    label: "Terms of Service",
-    url: "/terms-of-service"
-  }
+const navLinks = [
+  { href: "/features", label: "Features" },
+  { href: "/pricing", label: "Pricing" }
 ];
 
 const Navbar = () => {
   return (
-    <nav className="border-b-2 border-black py-2 px-4">
-      <ul className="flex items-center gap-4">
-        <li>
-          <Link href="/" className={`${recursive.className} text-4xl`}>
-            Velo
-          </Link>
-        </li>
+    <header className="bg-white">
+      <nav className="w-full max-w-[1728px] mx-auto">
+        <ul className="flex items-center gap-10 py-3 px-16">
+          <li>
+            <VeloLogo />
+          </li>
 
-        {links.map((link, index) => (
-          <li key={index}>
-            <Link href={link.url} className="text-blue-500 hover:underline">
-              {link.label}
+          {navLinks.map((link) => {
+            return (
+              <li key={link.label}>
+                <Link href={link.href} className="hover:underline">
+                  {link.label}
+                </Link>
+              </li>
+            );
+          })}
+
+          <li className="ml-auto">
+            <Link
+              href="/login"
+              className="
+                border border-slate-400 
+                text-sm font-semibold text-slate-800 
+                min-h-10 py-1.5 px-6 rounded block
+                transition-colors
+                hover:bg-slate-200
+              "
+            >
+              Login
             </Link>
           </li>
-        ))}
-      </ul>
-    </nav>
+        </ul>
+      </nav>
+    </header>
   );
 };
 
 export { Navbar };
+
+// background-color: #d3d1cd
+// color: #2b2b2b;
+// font-weight: 600;
+// padding: 6px 24px;
+// min-height: 40px;
+// border-radius: 4px;
